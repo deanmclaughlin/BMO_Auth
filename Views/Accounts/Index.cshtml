@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BMO_Auth.Models.Account>
+
+@{
+    ViewData["Title"] = "Accounts";
+}
+
+<h1>Accounts</h1>
+
+<p>
+    <a asp-action="Create">Create New Account</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Account No.
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th>
+                <!--@Html.DisplayNameFor(model => model.InterestAppliedDate)-->
+                Interest Last Applied
+            </th>
+            <th>
+                <!--@Html.DisplayNameFor(model => model.AccountType)-->
+                Account Type
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormattedAcctNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormattedBalance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StrIntDate)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.LastName),
+                &nbsp;
+                @Html.DisplayFor(modelItem => item.Client.FirstName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

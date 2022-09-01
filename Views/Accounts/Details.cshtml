@@ -1,0 +1,49 @@
+﻿@model BMO_Auth.Models.Account
+
+@{
+    ViewData["Title"] = "Account Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Account #@Html.DisplayFor(model => model.FormattedAcctNumber)</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Balance)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FormattedBalance)
+        </dd>
+        <dt class = "col-sm-2">
+            <!--@Html.DisplayNameFor(model => model.InterestAppliedDate)-->
+            Interest Last Applied
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StrIntDate)
+        </dd>
+        <dt class = "col-sm-2">
+            <!--@Html.DisplayNameFor(model => model.AccountType)-->
+            Account Type
+        </dt>
+        <dd class = "col-sm-10">
+            ID #@Html.DisplayFor(model => model.AccountType.Id)
+            &nbsp;
+            (@Html.DisplayFor(model => model.AccountType.Name))
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        <dd class = "col-sm-10">
+            ID #@Html.DisplayFor(model => model.Client.Id)
+            &nbsp;
+            (@Html.DisplayFor(model => model.Client.LastName),
+             @Html.DisplayFor(model => model.Client.FirstName))
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

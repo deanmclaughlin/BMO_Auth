@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Registration";
+}
+
+<h1>Register</h1>
+
+<h4>New Client with Account</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="DoRegistration">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			@{
+                string today = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+
+            <div class="form-group">
+                <label class="control-label">Client First Name</label>
+                <input name="firstName" class="form-control" />
+            </div>
+            <p></p>
+
+            <div class="form-group">
+                <label class="control-label">Client Last Name</label>
+                <input name="lastName" class="form-control" />
+            </div>
+            <p></p>
+
+            <div class="form-group">
+                <label class="control-label">Client Birth Date</label>
+                <input name="birthDate" type="date" class="form-control" min="1900-01-01" max="@today"/>
+            </div>
+            <p></p>
+
+            <div class="form-group">
+                <label class="control-label">Client Home Address</label>
+                <input name="homeAddress" class="form-control" />
+            </div>
+            <p></p>
+			
+			<div class="form-group">
+			    <label class="control-label">Account Type</label>
+				<select name="accountType" class="form-control" asp-items="@(ViewData["AccountTypes"] as SelectList)"></select>
+		    </div>
+			<p></p>
+			
+			<div class="form-group">
+			    <label class="control-label">Account Opening Balance</label>
+				<input name="openBalance" class="form-control" />
+			</div>
+			<p></p>
+			
+
+			<div class="form-group">
+			    <label class="control-label">Date</label>
+				<input name="theDate" type="date" class="form-control" value="@today" readonly />
+		    </div>
+			<p></p>
+				
+			
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+            <p></p>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

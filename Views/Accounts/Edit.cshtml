@@ -1,0 +1,56 @@
+﻿@model BMO_Auth.Models.Account
+
+@{
+    ViewData["Title"] = "Edit Account";
+}
+
+<h1>Edit</h1>
+
+<h4>Account #@Html.DisplayFor(model => model.FormattedAcctNumber)</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ClientId" class="control-label">Client</label>
+                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+                <span asp-validation-for="ClientId" class="text-danger"></span>
+            </div>
+            <p></p>
+            <div class="form-group">
+                <label asp-for="AccountTypeId" class="control-label">Account Type</label>
+                <select asp-for="AccountTypeId" class="form-control" asp-items="ViewBag.AccountTypeId"></select>
+                <span asp-validation-for="AccountTypeId" class="text-danger"></span>
+            </div>
+            <p></p>
+            <!--
+                <div class="form-group">
+                <label asp-for="Balance" class="control-label">Balance</label>
+                <input asp-for="Balance" class="form-control" />
+                <span asp-validation-for="Balance" class="text-danger"></span>
+                </div>
+                <p></p>
+            -->
+            <div class="form-group">
+                <label asp-for="InterestAppliedDate" class="control-label">Interest Last Applied</label>
+                <input asp-for="InterestAppliedDate" class="form-control" />
+                <span asp-validation-for="InterestAppliedDate" class="text-danger"></span>
+            </div>
+            <p></p>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <p></p>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
