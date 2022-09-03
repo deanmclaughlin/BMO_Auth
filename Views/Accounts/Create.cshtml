@@ -32,8 +32,8 @@
                 string today = DateTime.Now.ToString("yyyy-MM-dd");
             }
             <div class="form-group">
-                <label class="control-label">Date</label>
-                <input name="inputDate" type="date" class="form-control" value="@today" readonly />
+                <label asp-for="InterestAppliedDate" class="control-label">Date</label>
+                <input asp-for="InterestAppliedDate" type="date" class="form-control" value="@today" readonly />
                 <span asp-validation-for="InterestAppliedDate" class="text-danger"></span>
             </div>
             <p></p>
