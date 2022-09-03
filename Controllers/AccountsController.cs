@@ -59,10 +59,11 @@ namespace BMO_Auth.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClientId,AccountTypeId,Balance,DateOnly.Parse(inputDate)")] Account account)
+        public async Task<IActionResult> Create(string InterestAppliedDate, [Bind("Id,ClientId,AccountTypeId,Balance")] Account account)
         {
             if (ModelState.IsValid)
             {
+                account.InterestAppliedDate = DateOnly.Parse(InterestAppliedDate);
                 _context.Add(account);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -95,7 +96,7 @@ namespace BMO_Auth.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,AccountTypeId,Balance,InterestAppliedDate")] Account account)
+        public async Task<IActionResult> Edit(int id, string InterestAppliedDate, [Bind("Id,ClientId,AccountTypeId,Balance")] Account account)
         {
             if (id != account.Id)
             {
@@ -106,6 +107,7 @@ namespace BMO_Auth.Controllers
             {
                 try
                 {
+                    account.InterestAppliedDate = DateOnly.Parse(InterestAppliedDate);
                     _context.Update(account);
                     await _context.SaveChangesAsync();
                 }

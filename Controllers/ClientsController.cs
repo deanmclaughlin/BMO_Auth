@@ -56,10 +56,11 @@ namespace BMO_Auth.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,BirthDate,HomeAddress")] Client client)
+        public async Task<IActionResult> Create(string BirthDate, [Bind("Id,FirstName,LastName,HomeAddress")] Client client)
         {
             if (ModelState.IsValid)
             {
+                client.BirthDate = DateOnly.Parse(BirthDate);
                 _context.Add(client);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -88,7 +89,7 @@ namespace BMO_Auth.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,BirthDate,HomeAddress")] Client client)
+        public async Task<IActionResult> Edit(int id, string BirthDate, [Bind("Id,FirstName,LastName,HomeAddress")] Client client)
         {
             if (id != client.Id)
             {
@@ -99,6 +100,7 @@ namespace BMO_Auth.Controllers
             {
                 try
                 {
+                    client.BirthDate = DateOnly.Parse(BirthDate);
                     _context.Update(client);
                     await _context.SaveChangesAsync();
                 }
