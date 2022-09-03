@@ -25,9 +25,14 @@
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <p></p>
+            @{
+                string current = Model.BirthDate.ToString("yyyy-MM-dd");
+                string today = DateTime.Now.ToString("yyyy-MM-dd");
+            }
             <div class="form-group">
                 <label asp-for="BirthDate" class="control-label">Birth Date</label>
-                <input asp-for="BirthDate" class="form-control" />
+                <input asp-for="BirthDate" type="date" class="form-control"
+                       value="@current" min="1900-01-01" max="@today" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             <p></p>
