@@ -1,11 +1,22 @@
-﻿@{
+﻿@using BMO_Auth.Models.Exceptions
+@{
     ViewData["Title"] = "Registration";
 }
 
 <h1>Register</h1>
-
 <h4>New Client with Account</h4>
 <hr />
+
+@if (ViewData["Exceptions"] != null)
+{
+    <ul>
+        @foreach (Exception sub in (ViewData["Exceptions"] as ValidationException).SubExceptions)
+        {
+            <li>@sub.Message</li>
+        }
+    </ul>
+}
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="DoRegistration">
